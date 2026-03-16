@@ -314,8 +314,8 @@ Netryx is free and open source. The optional AI Coarse feature requires a Gemini
 
 **Sairaj Balaji** — AI researcher and founder of [Avtaar.ai](https://avtaar.ai). Grants from Microsoft and ElevenLabs. Featured in Fast Company and Deutsche Welle.
 
-- [LinkedIn](https://linkedin.com/in/sairajbalaji)
-- [Twitter/X](https://x.com/sairajbalaji)
+- [LinkedIn](https://www.linkedin.com/in/sairaj-balaji-7295b2246/)
+  
 
 ---
 
