@@ -1,0 +1,12 @@
+torch
+torchvision
+numpy
+Pillow
+opencv-python
+kornia
+aiohttp
+tkintermapview
+google-generativeai
+requests
+# LightGlue usually needs to be installed from source if not on PyPI as 'lightglue'
+# pip install git+https://github.com/cvg/LightGlue.git
