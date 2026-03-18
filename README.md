@@ -314,6 +314,16 @@ No. Netryx matches against outdoor street-view panoramas only. Indoor photos, ae
 
 Netryx is free and open source. The optional AI Coarse feature requires a Gemini API key (free tier available from Google). Compute costs are your own hardware — no cloud services required.
 
+**Is there a hosted version?**
+
+Yes. [netryx.live](https://netryx.live) runs the full pipeline in the cloud so you don't need to set up anything locally. Useful if you want quick results without building your own index.
+
+---
+
+## Don't want to set up the full pipeline?
+
+[**netryx.live**](https://netryx.live) runs the same engine in the cloud — upload a photo, get coordinates. No installation, no indexing, no GPU required.
+
 ---
 
 ## Built By
