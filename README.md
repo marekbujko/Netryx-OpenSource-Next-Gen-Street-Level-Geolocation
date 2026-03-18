@@ -156,7 +156,7 @@ pip install -r requirements.txt
 pip install kornia
 ```
 
-### Gemini API Key (Optional — for AI Coarse mode)
+### Gemini API Key (Optional — for AI Coarse mode) [Not recommended for use, manual does the job]
 
 If you want to use the AI-assisted blind geolocation feature:
 
