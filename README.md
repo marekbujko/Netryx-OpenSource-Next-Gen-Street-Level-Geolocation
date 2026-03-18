@@ -142,8 +142,9 @@ Heading Refinement (±45°, 3 FOVs, top 15 candidates)
 
 ```bash
 # Clone the repository
-git clone https://github.com/sparkyniner/netryx.git
-cd netryx
+git clone https://github.com/sparkyniner/Netryx-OpenSource-Next-Gen-Street-Level-Geolocation.git
+
+cd .\Netryx-OpenSource-Next-Gen-Street-Level-Geolocation\
 
 # Create virtual environment
 python3 -m venv venv
@@ -152,9 +153,14 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 # Install dependencies
 pip install -r requirements.txt
 
+# Install LightGlue explicitly (required for matching)
+pip install git+https://github.com/cvg/LightGlue.git
+
 # Optional: Install kornia for Ultra Mode (LoFTR)
 pip install kornia
 ```
+
+> Note: `lightglue` is imported by the app as a Python module, but it is installed from the GitHub repository above.
 
 ### Gemini API Key (Optional — for AI Coarse mode) [Not recommended for use, manual does the job]
 

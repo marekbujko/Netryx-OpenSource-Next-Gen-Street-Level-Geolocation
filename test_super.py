@@ -1,7 +1,8 @@
 import os
 # [MPS FIX] Enable CPU fallback for operators not implemented on MPS (like aten::kthvalue used by DISK)
 # MUST be set before importing torch
-os.environ['PYTORCH_ENABLE_MPS_FALLBACK'] = '1'
+if os.name != 'nt':
+    os.environ['PYTORCH_ENABLE_MPS_FALLBACK'] = '1'
 
 import tkinter as tk
 from tkinter import filedialog, ttk
@@ -39,7 +40,69 @@ import gc
 
 #Device and model steup stuff
 
-device = 'mps' if torch.backends.mps.is_available() else ('cuda' if torch.cuda.is_available() else 'cpu')
+def select_runtime_device():
+    """
+    Pick the best runtime device with safe fallbacks.
+    Priority: CUDA (NVIDIA) -> MPS (Apple) -> CPU.
+    Optional override via NETRYX_DEVICE in {'cuda','mps','cpu','auto'}.
+    """
+    forced = os.getenv('NETRYX_DEVICE', 'auto').strip().lower()
+    valid_forced = {'auto', 'cuda', 'mps', 'cpu'}
+    if forced not in valid_forced:
+        print(f"[DEVICE] Invalid NETRYX_DEVICE='{forced}'. Falling back to auto.")
+        forced = 'auto'
+
+    def _cuda_usable():
+        if not torch.cuda.is_available():
+            return False, 'torch.cuda.is_available() is False'
+        try:
+            # Quick allocation confirms CUDA context is actually usable.
+            _ = torch.zeros(1, device='cuda')
+            return True, torch.cuda.get_device_name(0)
+        except Exception as e:
+            return False, str(e)
+
+    def _mps_usable():
+        mps_backend = getattr(torch.backends, 'mps', None)
+        if mps_backend is None:
+            return False
+        return mps_backend.is_available() and mps_backend.is_built()
+
+    if forced == 'cuda':
+        ok, info = _cuda_usable()
+        if ok:
+            print(f"[DEVICE] Forced CUDA: {info}")
+            return 'cuda'
+        print(f"[DEVICE] CUDA forced but unavailable ({info}). Falling back to auto.")
+    elif forced == 'mps':
+        if _mps_usable():
+            print("[DEVICE] Forced MPS")
+            return 'mps'
+        print("[DEVICE] MPS forced but unavailable. Falling back to auto.")
+    elif forced == 'cpu':
+        print("[DEVICE] Forced CPU")
+        return 'cpu'
+
+    cuda_ok, cuda_info = _cuda_usable()
+    if cuda_ok:
+        print(f"[DEVICE] Auto-selected CUDA: {cuda_info}")
+        return 'cuda'
+    if _mps_usable():
+        print("[DEVICE] Auto-selected MPS")
+        return 'mps'
+    print(f"[DEVICE] Auto-selected CPU (CUDA unavailable: {cuda_info})")
+    return 'cpu'
+
+
+device = select_runtime_device()
+if device == 'cuda':
+    # Safe CUDA perf toggles; ignored on other backends.
+    torch.backends.cuda.matmul.allow_tf32 = True
+    torch.backends.cudnn.allow_tf32 = True
+    try:
+        torch.set_float32_matmul_precision('high')
+    except Exception:
+        pass
 print(f"Using device: {device}")
 
 extractor = DISK(max_num_keypoints=768).eval().to(device)
@@ -51,7 +114,7 @@ _thread_local = threading.local()
 
 def get_worker_matcher():
     if not hasattr(_thread_local, 'matcher'):
-        use_flash = device != 'mps'
+        use_flash = device == 'cuda'
         matcher = LightGlue(
             features='disk',
             depth_confidence=0.9,
