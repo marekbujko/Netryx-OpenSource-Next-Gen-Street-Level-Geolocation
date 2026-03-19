@@ -1511,15 +1511,15 @@ class StreetViewMatcherGUI:
 
     def analyze_ai_response(self, confidence, reason_text):
         if confidence >= 0.85:
-            return {'radius': 1.2, 'grid_res': 8, 'fov': 70, 'direction_precision': 'narrow', 'rationale': 'High confidence'}
+            return {'radius': 1.2, 'grid_res': 300, 'fov': 70, 'direction_precision': 'narrow', 'rationale': 'High confidence'}
         elif confidence >= 0.75:
-            return {'radius': 1.5, 'grid_res': 8, 'fov': 80, 'direction_precision': 'moderate', 'rationale': 'Good confidence'}
+            return {'radius': 1.5, 'grid_res': 300, 'fov': 80, 'direction_precision': 'moderate', 'rationale': 'Good confidence'}
         elif confidence >= 0.65:
-            return {'radius': 2.8, 'grid_res': 9, 'fov': 90, 'direction_precision': 'wide', 'rationale': 'Medium confidence'}
+            return {'radius': 2.8, 'grid_res': 300, 'fov': 90, 'direction_precision': 'wide', 'rationale': 'Medium confidence'}
         elif confidence >= 0.50:
-            return {'radius': 3, 'grid_res': 9, 'fov': 100, 'direction_precision': 'very_wide', 'rationale': 'Lower confidence'}
+            return {'radius': 3, 'grid_res': 300, 'fov': 100, 'direction_precision': 'very_wide', 'rationale': 'Lower confidence'}
         else:
-            return {'radius': 1.5, 'grid_res': 9, 'fov': 110, 'direction_precision': 'full', 'rationale': 'Low confidence'}
+            return {'radius': 1.5, 'grid_res': 300, 'fov': 110, 'direction_precision': 'full', 'rationale': 'Low confidence'}
 
     # how the search flows
 
