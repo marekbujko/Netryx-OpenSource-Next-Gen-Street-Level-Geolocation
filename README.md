@@ -76,7 +76,7 @@ This stage processes 300–500 candidates in **2–5 minutes** depending on your
 The initial match is good but not always optimal. Refinement improves it:
 
 - **Heading refinement**: For the top 15 candidates, the system tests ±45° heading offsets at 15° steps across 3 FOVs. This catches cases where the indexed heading doesn't exactly match the query's viewing direction.
-- **Spatial consensus**: Matches are clustered into 50m grid cells. If multiple candidates cluster in one area, that cluster is preferred over a single high-inlier outlier — reducing false positives.
+- **Spatial consensus**: Matches are clustered into 50m  cells. If multiple candidates cluster in one area, that cluster is preferred over a single high-inlier outlier — reducing false positives.
 - **Confidence scoring**: The system evaluates geographic clustering of top matches and uniqueness ratio (how much better the best match is vs. the runner-up at a different location).
 
 ### Ultra Mode (Optional)
@@ -189,7 +189,7 @@ Before searching, you need to index an area. This crawls Google Street View pano
 1. Select **Create** mode
 2. Enter the center coordinates (latitude, longitude) of the area you want to index
 3. Set the search radius (start with 0.5–1km for testing, 5–10km for production)
-4. Set grid resolution (8 is a good default — higher = denser coverage)
+4. Set grid resolution (300 is a good default — higher = denser coverage, please dont tamper with this)
 5. Click **Create Index**
 
 **Indexing time estimates:**
