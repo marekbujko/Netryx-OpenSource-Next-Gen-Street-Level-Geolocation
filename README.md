@@ -39,11 +39,11 @@ The core pipeline combines three state-of-the-art computer vision models:
 
 ## How It Works
 
-Netryx uses a three-stage pipeline that progressively narrows from millions of candidates to a single precise match.
+Netryx uses a three-stage pipeline that progressively narrows from millions of candidates to a single precise match. Netryx is simply a tool, it is source agnostic and can process images from any provider such as mapilliary or kartaview or any other provider
 
 ### Stage 1 — Global Retrieval (CosPlace)
 
-Every street-view panorama in the index has been pre-processed into a 512-dimensional "fingerprint" using [CosPlace](https://github.com/gmberton/cosplace), a visual place recognition model trained on millions of geo-tagged images.
+Every street-view panorama in the index has been pre-processed into a 512-dimensional "fingerprint" using [CosPlace](https://github.com/gmberton/cosplace), a visual place recognition model trained on millions of geo-tagged images. 
 
 When you upload a query photo:
 
