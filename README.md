@@ -317,13 +317,13 @@ Netryx is free and open source. The optional AI Coarse feature requires a Gemini
 
 **Is there a hosted version?**
 
-Yes. [netryx.live](https://netryx.live) runs the full pipeline in the cloud so you don't need to set up anything locally. Useful if you want quick results without building your own index.
+Yes. [netryx.live](https://netryx.live) runs the full pipeline in the cloud so you don't need to set up anything locally. Useful if you want quick results without building your own index. But its around 30% less accurate than the open source version due to constraints with compute.
 
 ---
 
 ## Don't want to set up the full pipeline?
 
-[**netryx.live**](https://netryx.live) runs the same engine in the cloud — upload a photo, get coordinates. No installation, no indexing, no GPU required.
+[**netryx.live**](https://netryx.live) runs the same engine in the cloud — upload a photo, get coordinates. No installation, no indexing, no GPU required. But its around 30% less accurate than the open source version due to constraints with compute.
 
 ---
 
