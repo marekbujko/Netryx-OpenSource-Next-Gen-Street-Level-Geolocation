@@ -11,6 +11,9 @@
 </p>
 
 ---
+## THIS VERSION IS OLD, USE THIS INSTEAD
+
+[NEW REPO](https://github.com/sparkyniner/Netryx-Astra-V2-Geolocation-Tool/tree/main)
 
 ## What is Netryx?
 
